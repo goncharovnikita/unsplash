@@ -1,4 +1,4 @@
-package api
+package unsplash
 
 import (
 	"encoding/json"
@@ -17,8 +17,8 @@ type idGetter interface {
 	GetToken() (string, error)
 }
 
-// UnsplashAPI implementation
-type UnsplashAPI struct {
+// API implementation
+type API struct {
 	idGetter   idGetter
 	httpClient *http.Client
 }
@@ -26,8 +26,8 @@ type UnsplashAPI struct {
 func NewUnsplashAPI(
 	idGetter idGetter,
 	httpClient *http.Client,
-) *UnsplashAPI {
-	return &UnsplashAPI{
+) *API {
+	return &API{
 		idGetter:   idGetter,
 		httpClient: httpClient,
 	}
@@ -64,7 +64,7 @@ type ImageResponse struct {
 	RateLimitRemaining int
 }
 
-func (u *UnsplashAPI) GetRandomImage(
+func (u *API) GetRandomImage(
 	orientation string,
 	width string,
 	height string,
